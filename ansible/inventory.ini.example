@@ -1,0 +1,9 @@
+[control_plane]
+ip
+
+[workers]
+ip1
+ip2
+
+[all:vars]
+ansible_user=root

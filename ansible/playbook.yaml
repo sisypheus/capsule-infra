@@ -1,0 +1,40 @@
+---
+- name: Install k3s on all nodes (server on control, agent on workers)
+  hosts: all
+  become: true
+  gather_facts: true
+
+  roles:
+    - role: xanmanning.k3s
+
+- name: Wait for the control-plane API to become available
+  hosts: control_plane
+  become: true
+  gather_facts: true
+  tasks:
+    - name: Wait for kube-apiserver (6443) to be reachable on control-plane
+      wait_for:
+        host: "{{ inventory_hostname }}"
+        port: 6443
+        delay: 5
+        timeout: 180
+
+    - name: Ensure kubectl (k3s kubectl) can talk to the cluster - get nodes (sanity)
+      command: >
+        k3s kubectl --kubeconfig /etc/rancher/k3s/k3s.yaml get nodes --no-headers
+      register: kubectl_nodes
+      failed_when: kubectl_nodes.rc != 0
+      changed_when: false
+
+    - name: Taint control-plane node so it is reserved for system workloads
+      command: >
+        k3s kubectl --kubeconfig /etc/rancher/k3s/k3s.yaml
+        taint nodes {{ ansible_hostname }}
+        node-role.kubernetes.io/control-plane=:NoSchedule --overwrite
+      register: taint_result
+      changed_when: taint_result is defined and (taint_result.rc == 0)
+      failed_when: taint_result is defined and taint_result.rc != 0
+
+    - name: Show result of taint operation (for debugging)
+      debug:
+        var: taint_result.stdout_lines
