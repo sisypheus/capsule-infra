@@ -49,6 +49,8 @@ spec:
           envFrom:
             - secretRef:
                 name: backend-secrets
+            - secretRef:
+                name: backend-ssh-secrets
           livenessProbe:
             httpGet:
               path: /health
