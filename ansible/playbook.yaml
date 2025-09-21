@@ -38,3 +38,31 @@
     - name: Show result of taint operation (for debugging)
       debug:
         var: taint_result.stdout_lines
+
+- name: Configure cluster taints and labels
+  hosts: control_plane
+  become: true
+  tasks:
+    - name: Wait for the control-plane node to be ready
+      command: >
+        k3s kubectl wait --for=condition=Ready node/{{ ansible_hostname }} --timeout=120s
+      changed_when: false
+
+    - name: Taint the control-plane node
+      command: >
+        k3s kubectl taint node {{ ansible_hostname }}
+        system-apps=true:NoSchedule --overwrite
+      changed_when: true
+
+    - name: Label the control-plane node for system apps
+      command: >
+        k3s kubectl label node {{ ansible_hostname }}
+        node-role.kubernetes.io/system=true --overwrite
+      changed_when: true
+
+    - name: Label the worker nodes for user workloads
+      command: >
+        k3s kubectl label node {{ hostvars[item]['ansible_hostname'] }}
+        node-role.kubernetes.io/workload=true --overwrite
+      loop: "{{ groups['workers'] }}"
+      changed_when: true
