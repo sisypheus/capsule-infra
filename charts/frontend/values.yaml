@@ -105,3 +105,6 @@ tolerations:
     operator: "Exists"
     effect: "NoSchedule"
 affinity: {}
+frontend:
+  image:
+    tag: c7b41b84314d88348a0240c323d40bedd68eafbf
