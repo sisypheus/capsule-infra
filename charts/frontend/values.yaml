@@ -106,4 +106,4 @@ tolerations:
 affinity: {}
 frontend:
   image:
-    tag: 9bba3c76f8a09c67b6f57bd62929210d97801bc4
+    tag: f54af9652bae8cac73187f78e6dd7272f5eab93c
