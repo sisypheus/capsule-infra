@@ -52,18 +52,18 @@ service:
 ingress:
   enabled: true
   className: "traefik"
-  annotations: {}
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
   hosts:
     - host: capsule.poette.dev
       paths:
         - path: /
           pathType: Prefix
   tls:
-    enabled: true 
-    secretName: capsule-frontend-tls
-    issuerRef:
-      name: letsencrypt-staging
-      kind: ClusterIssuer
+    - secretName: capsule-frontend-tls
+      hosts:
+        - capsule.poette.dev
+
 resources: {}
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 livenessProbe:
