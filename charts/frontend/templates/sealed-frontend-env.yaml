@@ -1,0 +1,13 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: frontend-secrets
+  namespace: default
+spec:
+  encryptedData:
+    VITE_BACKEND_URL: AgCMnYapnIXOLg+XF+2eC04QmNIfaus0JVzaGOIPK23eewgB1mfhv8GfDAK61VPRK/WFKeRM3Jt0yA6NwKJ1yXNG8UaZSgQJOmXvJTgMMmpGTW/A1KjRKHanYkxs8XeA1MaZrZ6OgDczRWhUCniVXz8mTDx5N0lZOeXXXjJnRGP/s9yMdXONWH4gED96A6ZQE8V06xixEixeExaDcuhFHLAhF0kNIRDInosmu4R2Fq3RtgG+iR/qGUEzSQ4ZNsZE3RdzJycHkj13AAkjF46kcpEI3HBUfj+uFCxDTf9OAYjgGBSmlYHtJRb9ZXd2dnGngEZ2Qu6UxeRruWSp0C7gHknboVj242H50A+5AGvKx7zo8TSdRZG2YQvaLf8iZlLMs2ueLRouO5c5dpH8ZoMHhG9ho2RbnypiEHUmCfzjRibTvKcl3D1rocjqjmsEDS7ZhwGJQ1UQIoQWyo2/WHxAk97SNpCdshtYT+IbeGxUiqn0GQc+QQhAFKsRNKVEFWQxLOpqd70PQkLctjapOtfeoUwJeT+Oy7k/StEajeaDbc9s+9K7qOs3MLJCvUhRredFj2w0G9fdT4yp5twVIVrzEGa7M/Vp8ZGnT3ujJE0QjYmO83hG0pWbcBvhglm1yYhYunaHb55Awm0ywmi3sp84520cMCGcbrWHDn5sWW/n5Em8IXN4z6k5TwmVlERC1RyDQb8Ccyh6kMA0OaS0T+uImyta9b1120k=
+  template:
+    metadata:
+      name: frontend-secrets
+      namespace: default
