@@ -52,7 +52,8 @@ service:
 ingress:
   enabled: true
   className: "traefik"
-  annotations: {}
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
   hosts:
     - host: api.capsule.poette.dev
       paths:
