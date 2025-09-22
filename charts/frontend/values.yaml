@@ -63,7 +63,6 @@ ingress:
     - secretName: capsule-frontend-tls
       hosts:
         - capsule.poette.dev
-
 resources: {}
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 livenessProbe:
@@ -107,4 +106,4 @@ tolerations:
 affinity: {}
 frontend:
   image:
-    tag: c7b41b84314d88348a0240c323d40bedd68eafbf
+    tag: f00d04daac27aab82cf4ff619878f38c763f3e31
