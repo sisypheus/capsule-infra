@@ -60,9 +60,9 @@ ingress:
         - path: /
           pathType: Prefix
   tls:
-   - secretName: capsule-backend-tls
-     hosts:
-       - api.capsule.poette.dev
+    - secretName: capsule-backend-tls
+      hosts:
+        - api.capsule.poette.dev
 resources: {}
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 livenessProbe:
@@ -106,4 +106,4 @@ tolerations:
 affinity: {}
 backend:
   image:
-    tag: 657d7bbd79c354ebe9511f3b158d2fbaf133cd6f
+    tag: 798b2253dc281abd1b7738e745dd489e29ba207f
