@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: helm-repositories
+  namespace: argocd
+data:
+  repositories: |
+    - name: bitnami
+      url: https://charts.bitnami.com/bitnami
