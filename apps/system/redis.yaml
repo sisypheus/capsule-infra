@@ -9,7 +9,6 @@ spec:
   source:
     repoURL: 'https://charts.bitnami.com/bitnami'
     chart: redis
-    targetRevision: 22.0.7
     
     helm:
       values: |
