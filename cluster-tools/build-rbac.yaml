@@ -22,10 +22,9 @@ rules:
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
+kind: ClusterRoleBinding
 metadata:
   name: build-orchestrator-binding
-  namespace: default
 subjects:
   - kind: ServiceAccount
     name: build-orchestrator
