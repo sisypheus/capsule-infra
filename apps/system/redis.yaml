@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: 'https://charts.bitnami.com/bitnami'
     chart: redis
-    targetRevision: 19.0.6
+    targetRevision: 22.0.7
     
     helm:
       values: |
@@ -28,7 +28,6 @@ spec:
         replica:
           replicaCount: 0
 
-        # On ajoute des labels pour que nos NetworkPolicies puissent le cibler
         commonLabels:
           app: redis
 
