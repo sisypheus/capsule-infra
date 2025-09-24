@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: build-orchestrator
+  namespace: default
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: build-orchestrator-role
+  namespace: default
+rules:
+  - apiGroups: [""]
+    resources: ["namespaces", "secrets", "pods", "pods/log"]
+    verbs: ["create", "get", "list", "watch", "delete"]
+  - apiGroups: ["batch"]
+    resources: ["jobs"]
+    verbs: ["create", "get", "list", "watch", "delete"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: build-orchestrator-binding
+  namespace: default
+subjects:
+  - kind: ServiceAccount
+    name: build-orchestrator
+    namespace: default
+roleRef:
+  kind: Role
+  name: build-orchestrator-role
+  apiGroup: rbac.authorization.k8s.io
