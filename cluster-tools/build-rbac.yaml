@@ -3,15 +3,18 @@ kind: ServiceAccount
 metadata:
   name: build-orchestrator
   namespace: default
+
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
+kind: ClusterRole
 metadata:
-  name: build-orchestrator-role
-  namespace: default
+  name: build-orchestrator-clusterrole
 rules:
   - apiGroups: [""]
-    resources: ["namespaces", "secrets", "pods", "pods/log"]
+    resources: ["namespaces"]
+    verbs: ["create", "get", "list", "watch", "delete"]
+  - apiGroups: [""]
+    resources: ["secrets", "pods", "pods/log"]
     verbs: ["create", "get", "list", "watch", "delete"]
   - apiGroups: ["batch"]
     resources: ["jobs"]
@@ -28,6 +31,6 @@ subjects:
     name: build-orchestrator
     namespace: default
 roleRef:
-  kind: Role
-  name: build-orchestrator-role
+  kind: ClusterRole
+  name: build-orchestrator-clusterrole
   apiGroup: rbac.authorization.k8s.io
