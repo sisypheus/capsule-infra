@@ -8,7 +8,7 @@ replicaCount: 1
 image:
   repository: ghcr.io/sisypheus/capsule-frontend
   pullPolicy: Always
-  tag: e40f71c4f741f994ba8cb92c48ac43cbd00de4f1
+  tag: e40f71c
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
 # This is to override the chart name.
